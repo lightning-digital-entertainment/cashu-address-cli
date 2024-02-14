@@ -1,10 +1,14 @@
-import { readFile, unlink, writeFile } from "fs/promises";
+import { mkdir, readFile, unlink, writeFile } from "fs/promises";
 import prompts from "prompts";
 import { encryptKey } from "./encryption";
 import { parseKey } from "./keys";
 import { resolve } from "path";
+import { homedir } from "os";
+import { existsSync } from "fs";
 
-const configPath = resolve(__dirname, ".config.json");
+const userDir = homedir();
+const configDir = resolve(userDir, ".cacli/");
+const configPath = resolve(userDir, ".cacli/config.json");
 
 export async function getConfig() {
   try {
@@ -20,6 +24,10 @@ export async function deleteConfig() {
 }
 
 export async function writeConfig(config: { user: string }) {
+  const exists = existsSync(configDir);
+  if (!exists) {
+    await mkdir(configDir);
+  }
   await writeFile(configPath, JSON.stringify(config), { flag: "w+" });
 }
 
