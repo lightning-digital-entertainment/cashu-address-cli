@@ -15,11 +15,15 @@ cashu-address-cli is a work-in-progress. Please proceed with caution.
 
 ## Getting Started
 
-cashu-address-cli is a NodeJS application. You can run the source file with node or run the executable binary directly (experimental!!).
+cashu-address-cli is a NodeJS application. You can either run it using `npx` or using node itself.
+
+### Running with npx
+
+```sh
+npx cashu-address-cli
+```
 
 ### Running with NodeJS
-
-This required Node and npm to be installed
 
 ```sh
 npm install
